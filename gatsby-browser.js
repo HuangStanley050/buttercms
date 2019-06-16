@@ -5,3 +5,28 @@
  */
 
 // You can delete this file if you're not using it
+import { createStore, applyMiddleware, compose, combineReducers } from "redux"
+import createSagaMiddleware from "redux-saga"
+import { Provider } from "react-redux"
+import backgroundReducer from "./src/store/reducers/backgroundReducer"
+import React from "react"
+
+const composeEnhancers =
+  process.env.NODE_ENV === "development"
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    : null || compose
+
+const rootReducer = combineReducers({
+  background: backgroundReducer,
+})
+const sagaMiddleware = createSagaMiddleware()
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(sagaMiddleware))
+)
+
+const wrapRootElement = ({ element }) => {
+  return <Provider store={store}>{element}</Provider>
+}
+
+export default wrapRootElement
