@@ -1,42 +1,19 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
-
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
+import React from "react";
+import { Navbar, NavbarBrand, Nav } from "reactstrap";
+import Img from "gatsby-image";
+const Header = props => {
+  return (
+    <div>
+      <Navbar color="dark" light>
+        <NavbarBrand
+          style={{ display: "block", width: "350px" }}
+          className="mx-auto"
         >
-          {siteTitle}
-        </Link>
-      </h1>
+          <Img fluid={props.image} />
+        </NavbarBrand>
+      </Navbar>
     </div>
-  </header>
-)
+  );
+};
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
-
-export default Header
+export default Header;
