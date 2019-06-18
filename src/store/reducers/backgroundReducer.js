@@ -1,5 +1,7 @@
+import * as actionType from "../actions/actionTypes";
+
 const initialState = {
-  test: "",
+  image: "hahha",
 };
 
 const reducer = (state = initialState, action) => {
