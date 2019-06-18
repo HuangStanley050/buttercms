@@ -1,10 +1,26 @@
 import axios from "axios";
 import { takeEvery, put, call } from "redux-saga/effects";
 import * as actionType from "../actions/actionTypes";
-import { fetch_start, fetch_fail } from "../actions/fetchActions";
+import { fetch_start, fetch_fail, fetch_okay } from "../actions/fetchActions";
+//https://api.unsplash.com/
+// import fs from "fs";
+// require("dotenv").config({
+//   path: `.env.${process.env.NODE_ENV}`,
+// });
+const query = "mountain";
 
-function* fetchWorker(action) {}
+const api = `https://api.unsplash.com/photos/random/?client_id=${
+  process.env.GATSBY_UNSPLASH_ID
+}&query=${query}`;
 
-function* fetchWatcher() {}
+function* fetchWorker(action) {
+  //console.log(process.env.GATSBY_UNSPLASH_ID);
+  let result = yield axios.get(api);
+  yield console.log(result.data.urls.regular);
+}
+
+function* fetchWatcher() {
+  yield takeEvery(actionType.GET_IMAGE_START, fetchWorker);
+}
 
 export default fetchWatcher;
