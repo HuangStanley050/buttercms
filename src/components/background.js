@@ -4,7 +4,7 @@ import { fetch_start } from "../store/actions/fetchActions";
 
 class BackGround extends Component {
   componentDidMount() {
-    this.interval = setInterval(() => this.props.getPicture(), 5000);
+    //this.interval = setInterval(() => this.props.getPicture(), 5000);
   }
   componentWillUnmount() {
     clearInterval(this.interval);
