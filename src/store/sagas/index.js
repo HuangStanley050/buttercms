@@ -14,9 +14,13 @@ const api = `https://api.unsplash.com/photos/random/?client_id=${
 }&query=${query}`;
 
 function* fetchWorker(action) {
-  //console.log(process.env.GATSBY_UNSPLASH_ID);
-  let result = yield axios.get(api);
-  yield console.log(result.data.urls.regular);
+  try {
+    let result = yield axios.get(api);
+
+    yield put(fetch_okay(result.data.urls.regular));
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 function* fetchWatcher() {

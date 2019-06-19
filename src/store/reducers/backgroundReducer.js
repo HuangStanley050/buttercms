@@ -1,11 +1,26 @@
 import * as actionType from "../actions/actionTypes";
 
 const initialState = {
-  image: "hahha",
+  image: null,
+  loading: false,
 };
 
 const reducer = (state = initialState, action) => {
-  return state;
+  switch (action.type) {
+    case actionType.GET_IMAGE_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case actionType.GET_IMAGE_OKAY:
+      return {
+        ...state,
+        image: action.imageUrl,
+        loading: false,
+      };
+    default:
+      return state;
+  }
 };
 
 export default reducer;

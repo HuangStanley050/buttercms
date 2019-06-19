@@ -33,7 +33,7 @@ const Layout = ({ children }) => {
       }
     }
   `);
-  console.log(data);
+
   return (
     <main>
       <Header image={data.file.childImageSharp.fluid} />
